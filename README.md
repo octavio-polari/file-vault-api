@@ -1,25 +1,119 @@
-# FileVault-API
+# FileVault API
+A backend test project for **`Nginx`**, **`Hono`** and **`Object Storage S3`** with **`Cloudflare R2`**
 
-To install dependencies:
+## DB Structure
 
+<table align="center">
+    <tr>
+        <td colspan="15" align="center" ><b>User</b></td>
+    </tr>
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Username</td>
+        <td>Email</td>
+        <td>Password</td>
+        <td>Created_At</td>
+        <td>Is_Active</td>
+    </tr>
+    <tr align="center">
+        <td>UUID</td>
+        <td>String</td>
+        <td>String</td>
+        <td>String</td>
+        <td>SHA256</td>
+        <td>DateTime</td>
+        <td>Boolean</td>
+    </tr>
+</table>
+
+<table align="center">
+    <tr>
+        <td colspan="15" align="center"><b>Follows</b></td>
+    </tr>
+    <tr>
+        <td>Follower_Id</td>
+        <td>Following_Id</td>
+        <td>Followed_At</td>
+    </tr>
+    <tr align="center">
+        <td>User_Id</td>
+        <td>User_Id</td>
+        <td>DateTime</td>
+    </tr>
+</table>
+
+<table align="center">
+    <tr>
+        <td colspan="15" align="center"><b>Cloudflare S3</b></td>
+    </tr>
+    <tr>
+        <td>Id</td>
+        <td>Created_By</td>
+        <td>Link</td>
+        <td>Created_At</td>
+    </tr>
+    <tr align="center">
+        <td>UUID</td>
+        <td>User_Id</td>
+        <td>String</td>
+        <td>DateTime</td>
+    </tr>
+</table>
+
+<table align="center">
+    <tr>
+        <td colspan="15" align="center"><b>Posts</b></td>
+    </tr>
+    <tr>
+        <td>Id</td>
+        <td>Created_By</td>
+        <td>Attachment_Id</td>
+        <td>Created_At</td>
+        <td>Is_Deleted</td>
+    </tr>
+    <tr align="center">
+        <td>UUID</td>
+        <td>User_Id</td>
+        <td>S3_Id</td>
+        <td>DateTime</td>
+        <td>Boolean</td>
+    </tr>
+</table>
+
+<table align="center">
+    <tr>
+        <td colspan="15" align="center"><b>Likes</b></td>
+    </tr>
+    <tr>
+        <td>Id (Post_Id)</td>
+        <td>User_Id</td>
+        <td>Liked_At</td>
+    </tr>
+    <tr align="center">
+        <td>Post_Id</td>
+        <td>User_Id</td>
+        <td>DateTime</td>
+    </tr>
+</table>
+
+##
 ```bash
-bun install
-```
+To install dependencies:
+    bun install
 
 To run:
-
-```bash
-bun run index.ts
+    bun run index.ts
 ```
 
 ## System Design
 ```mermaid
 graph LR
     Client["Client (User/Browser)"] --> Nginx["Load Balancer (Nginx)"]
-    Nginx --> Service["Service (Bun + Hono)"]
-    Auth["Auth Service (Identity/OAuth)"] --> Service
-    Service --> SQL["SQL Database (SQLite)"]
-    Service --> Storage["Object Storage (S3/Blob)"]
+    Nginx --> Backend["Backend (Bun + Hono)"]
+    Auth["Auth Service (Identity/OAuth)"] --> Backend
+    Backend --> SQL["SQL Database (SQLite)"]
+    Backend --> Storage["Object Storage S3 (Cloudflare R2)"]
 
     classDef client fill:#f9f,stroke:#333,stroke-width:2px,color:#000;
     classDef proxy fill:#9f9,stroke:#333,stroke-width:2px,color:#000;
@@ -28,7 +122,7 @@ graph LR
 
     class Client client;
     class Nginx proxy;
-    class Service,Auth api;
+    class Backend,Auth api;
     class SQL,Storage data;
 ```
 
