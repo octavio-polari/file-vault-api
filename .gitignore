@@ -10,6 +10,10 @@ dist
 coverage
 *.lcov
 
+# db
+*.sqlite
+src\db\*.sqlite
+
 # logs
 logs
 _.log
