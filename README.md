@@ -5,7 +5,7 @@ A backend test project for **`Nginx`**, **`Hono`** and **`Object Storage S3`** w
 
 <table align="center">
     <tr>
-        <td colspan="15" align="center" ><b>User</b></td>
+        <td colspan="15" align="center" ><b>Users</b></td>
     </tr>
     <tr>
         <td>Id</td>
@@ -37,15 +37,15 @@ A backend test project for **`Nginx`**, **`Hono`** and **`Object Storage S3`** w
         <td>Followed_At</td>
     </tr>
     <tr align="center">
-        <td>User_Id</td>
-        <td>User_Id</td>
+        <td>Users.Id</td>
+        <td>Users.Id</td>
         <td>DateTime</td>
     </tr>
 </table>
 
 <table align="center">
     <tr>
-        <td colspan="15" align="center"><b>Cloudflare S3</b></td>
+        <td colspan="15" align="center"><b>S3</b></td>
     </tr>
     <tr>
         <td>Id</td>
@@ -55,7 +55,7 @@ A backend test project for **`Nginx`**, **`Hono`** and **`Object Storage S3`** w
     </tr>
     <tr align="center">
         <td>UUID</td>
-        <td>User_Id</td>
+        <td>Usera.Id</td>
         <td>String</td>
         <td>DateTime</td>
     </tr>
@@ -74,8 +74,8 @@ A backend test project for **`Nginx`**, **`Hono`** and **`Object Storage S3`** w
     </tr>
     <tr align="center">
         <td>UUID</td>
-        <td>User_Id</td>
-        <td>S3_Id</td>
+        <td>Users.Id</td>
+        <td>S3.Id</td>
         <td>DateTime</td>
         <td>Boolean</td>
     </tr>
@@ -86,18 +86,18 @@ A backend test project for **`Nginx`**, **`Hono`** and **`Object Storage S3`** w
         <td colspan="15" align="center"><b>Likes</b></td>
     </tr>
     <tr>
-        <td>Id (Post_Id)</td>
+        <td>Id</td>
         <td>User_Id</td>
         <td>Liked_At</td>
     </tr>
     <tr align="center">
-        <td>Post_Id</td>
-        <td>User_Id</td>
+        <td>Post.Id</td>
+        <td>Users.Id</td>
         <td>DateTime</td>
     </tr>
 </table>
 
-##
+## Config
 ```bash
 To install dependencies:
     bun install
